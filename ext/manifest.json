@@ -20,4 +20,10 @@
     "default_title": "browser action demo",
     "default_popup": "src/browser_action/browser_action.html"
   }
+  ,
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true,
+    "open_in_tab": true
+  }
 }
