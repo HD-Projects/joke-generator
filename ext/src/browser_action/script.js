@@ -20,7 +20,8 @@ $("#setup").text("joke not found");
         function fulfilled(response){
 console.log(response)
 $("#setup").text(response.setup);
- $("#punchline").text(response.punchline);         
+ $("#punchline").text(response.punchline);     
+     $("#messagetouser").text("re-open the extension to get a new joke");     
           
         }
       
