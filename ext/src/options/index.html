@@ -1,9 +1,137 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+  <title>Camera</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One|Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body>
-	<p> Made by hdprojects.dev contact us at: developers@hdprojects.dev</p>
+  <h1>Magic Camera</h1>
+  <button id="reset"> reset filters </button>
+  <div class="tools">
+    <button id="sepia"> sepia </button>
+    
+       <button id="mirror"> mirror display </button>
+          <button id="colorshift">color shift</button>
+          <button id="invert">invert color</button>
+             <button id='blur'>blur</button>
+         <button id='brightness'>brightness</button>
+    <button id='bnw'>black and white</button>
+             <button id='opacity'>opacity</button>
+             <button id='saturate'>saturate</button>
+     <button id='crazy'>crazy weird</button>
+  </div>
+  
+  
+<div class="scene">
+  <img src="billboard.jpg">
+  <div class="video-container">
+  <video id="myCamera" autoplay> 
+  </video>
+  </div>
+  </div>
+  <script>
+    
+var myDevices = navigator.mediaDevices;
+     var permissionsObj = {
+ audio: false,
+ video: true
+ };
+myDevices.getUserMedia(permissionsObj).then(showCam);
+
+
+ function showCam(stream)   {
+$("#myCamera")[0].srcObject = stream;
+}
+    
+    
+function addEffect(event)  {
+
+var clickedBtn = event.currentTarget;
+ if (clickedBtn.id == "sepia") {
+ $('#myCamera').css('filter',
+ 'sepia(1)');
+ }
+  
+  else if (clickedBtn.id == "reset") {
+ $('#myCamera').css('filter',
+ ''); 
+  
+    $('#myCamera').css('transform', '');
+  }
+  
+    else if (clickedBtn.id == "mirror") {
+ $('#myCamera').css('transform',
+ 'scaleX(-1)')
+    }        
+  
+  
+  else if(clickedBtn.id == "colorshift") { 
+  
+   $('#myCamera').css('filter', 'hue-rotate(90deg)')
+  }
+    else if(clickedBtn.id == "invert") { 
+  
+   $('#myCamera').css('filter', 'invert(100%)')
+    } 
+  
+      else if(clickedBtn.id == "blur") { 
+  
+   $('#myCamera').css('filter', 'blur(5px)')
+    } 
+  
+     else if(clickedBtn.id == "bnw") { 
+  
+   $('#myCamera').css('filter', 'grayscale(100%)')
+    } 
+ 
+     else if(clickedBtn.id == "opacity") { 
+  
+   $('#myCamera').css('filter', 'opacity(50%)')
+    } 
+  
+     else if(clickedBtn.id == "saturate") { 
+  
+   $('#myCamera').css('filter', 'saturate(200%)')
+    } 
+  
+   else if(clickedBtn.id == "brightness") { 
+  
+   $('#myCamera').css('filter', 'brightness(200%)')
+    } 
+  
+  
+    else if(clickedBtn.id == "crazy") { 
+  
+   $('#myCamera').css('filter', 'saturate(200000%)')
+    } 
+  
+  
+  
+  
+} 
+    
+    $("button").click(addEffect)
+
+    
+function togglePlay(event) {
+
+  var video = event.currentTarget
+
+ if(video.paused) {
+video.play();
+ } else {
+ video.pause();
+ }
+
+
+}
+    
+    $("#myCamera").click(togglePlay)
+    
+  </script>
 </body>
+
 </html>
